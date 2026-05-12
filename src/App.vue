@@ -1,33 +1,44 @@
 <template>
-  <SplashView 
-    v-if="viewState === 'splash'"
-    @ready="model = $event"
-    @enter="viewState = 'menu'"
-  />
-  <MenuView 
-    v-if="viewState === 'menu'" 
-    @action="handleMenuAction" />
+  <Transition name="fade-blur" mode="out-in">
+    <component 
+      :is="currentView" 
+      v-bind="viewProps"
+      @ready="model = $event"
+      @enter="handleEnter"
+      @action="handleMenuAction"
+      @back="viewState = 'menu'"
+    />
+  </Transition>  
 </template>
-
+<style lang="scss" src="@/assets/scss/App.scss"></style>
 <script setup>
-import { ref, shallowRef } from 'vue';
+import { ref, shallowRef, computed } from 'vue';
 import SplashView from './views/SplashView.vue';
 import MenuView from './views/MenuView.vue';
+import OptionsView from './views/OptionsView.vue';
+import { playMusic } from '@/utils/AudioManager';
 
 const viewState = ref('splash');
 const model = shallowRef(null);
-</script>
 
-<style lang="scss">
-.app-root {
-  width: 100vw;
-  height: 100vh;
-}
-.scanner-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  color: #d4af37;
-}
-</style>
+const views = {
+  splash: SplashView,
+  menu: MenuView,
+  options: OptionsView,
+};
+
+const currentView = computed(() => views[viewState.value]);
+
+const viewProps = computed(() => {
+  if (viewState.value === 'about') {
+    return { 
+      title: 'Σχετικά', 
+      content: '<p>Το Μαντείο των Ολύμπιων είναι μια πύλη προς την αρχαία σοφία...</p>' 
+    };
+  }
+  return {};
+});
+
+const handleEnter = () => { playMusic(); viewState.value = 'menu'; };
+const handleMenuAction = (actionId) => { viewState.value = actionId; };
+</script>
