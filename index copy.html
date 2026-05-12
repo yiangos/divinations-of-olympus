@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scanner PoC</title>
+  <style>
+  .scanner-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+  }
+  #v { width: 100%; border-radius: 8px; background: #000; }
+.guide {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  /* This should match the 'zoom' logic above */
+  /* If zoom is 0.5, the box should be roughly 50% of the video height */
+  width: 50vw; 
+  height: 50vw;
+  max-width: 200px; 
+  max-height: 200px;
+  border: 3px solid #00ff00; /* Green box for better visibility */
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+  <div class="scanner-container">
+    <video id="v" playsinline autoplay muted></video>
+    <div class="guide"></div> 
+  </div>
+  <canvas id="c" width="224" height="224" style="display:none;"></canvas>
+  <div id="res">Initializing...</div>
+  <button id="btn" disabled>CAPTURE SCAN</button>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

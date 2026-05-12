@@ -1,0 +1,53 @@
+// Variables
+$gold: #d4af37;
+$gold-light: #f1d592;
+$bg-black: #0a0a0a;
+$text-dim: #a0a0a0;
+$font-main: 'Segoe UI', Roboto, sans-serif;
+
+// Reset & Base
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $bg-black;
+  color: white;
+  font-family: $font-main;
+  overflow: hidden; // Prevent scrolling on splash
+}
+
+// Global Classes
+.btn-primary {
+  position: relative;
+  padding: 14px 40px;
+  background: transparent;
+  color: $gold;
+  border: 1px solid $gold;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &:hover {
+    background: $gold;
+    color: black;
+    box-shadow: 0 0 20px rgba($gold, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    border-color: #333;
+    color: #444;
+    cursor: not-allowed;
+    &:hover { background: transparent; box-shadow: none; }
+  }
+}
