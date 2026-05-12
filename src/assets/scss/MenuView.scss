@@ -1,0 +1,56 @@
+.menu-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  z-index: 1000;
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  // Use image_0.png path
+  background-image: url('../images/image_0.jpg');
+  background-position: center;
+  background-size: cover;
+  filter: blur(10px) brightness(0.4); /* Applies blur and dims for legibility */
+  z-index: 0;
+  animation: blurIn 1.5s ease-out forwards;
+}
+
+.content-layer {
+  position: relative;
+  z-index: 1;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 90vw;
+  max-width: 400px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1s forwards; /* 1s delay */
+}
+
+/* Inherits from standard primary button styles */
+.btn-primary {
+  width: 100%;
+  border: 1px solid rgba($gold, 0.5);
+  background: rgba(0, 0, 0, 0.7); /* Adds contrast against background */
+  &:hover {
+    background: rgba($gold, 0.1);
+  }
+}
+
+@keyframes blurIn {
+  from { filter: blur(0px) brightness(1); }
+  to { filter: blur(10px) brightness(0.4); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

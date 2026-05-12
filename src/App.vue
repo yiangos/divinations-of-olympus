@@ -1,40 +1,21 @@
 <template>
-  <div class="app-root">
-    <SplashView 
-      v-if="viewState === 'splash'"
-      :status="loadingStatus" 
-      :isReady="isReady"
-      @enter="viewState = 'scanner'"
-    />
-    
-    <div v-else class="scanner-placeholder">
-      Scanner View Loaded
-    </div>
-  </div>
+  <SplashView 
+    v-if="viewState === 'splash'"
+    @ready="model = $event"
+    @enter="viewState = 'menu'"
+  />
+  <MenuView 
+    v-if="viewState === 'menu'" 
+    @action="handleMenuAction" />
 </template>
 
 <script setup>
-import { ref, onMounted, shallowRef } from 'vue';
-import * as tf from '@tensorflow/tfjs';
+import { ref, shallowRef } from 'vue';
 import SplashView from './views/SplashView.vue';
+import MenuView from './views/MenuView.vue';
 
 const viewState = ref('splash');
-const loadingStatus = ref('ΠΡΟΕΤΟΙΜΑΣΙΑ...');
-const isReady = ref(false);
 const model = shallowRef(null);
-
-onMounted(async () => {
-  try {
-    loadingStatus.value = 'ΕΙΣΟΔΟΣ ΣΤΑ ΜΟΝΟΠΑΤΙΑ ΤΗΣ ΣΚΕΨΗΣ...';
-    model.value = await tf.loadGraphModel('./model/rune_model_v102.json');
-    
-    loadingStatus.value = 'ΤΟ ΜΑΝΤΕΙΟ ΕΙΝΑΙ ΕΤΟΙΜΟ';
-    isReady.value = true;
-  } catch (e) {
-    loadingStatus.value = 'Ο ΔΙΑΛΟΓΙΣΜΟΣ ΑΠΕΤΥΧΕ';
-    console.error(e);
-  }
-});
 </script>
 
 <style lang="scss">

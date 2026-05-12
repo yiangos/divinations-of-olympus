@@ -81,16 +81,22 @@
     </div>
   </transition>
 </template>
+<style lang="scss" src="@/assets/scss/SplashView.scss" scoped></style>
 
 <script setup>
-import { onMounted } from 'vue';
+import { ref, shallowRef, onMounted } from 'vue';
+import * as tf from '@tensorflow/tfjs';
 import { gsap } from 'gsap';
 import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
 
-defineProps(['status', 'isReady']);
-defineEmits(['enter']);
+const model = shallowRef(null);
+const emit = defineEmits(['ready', 'enter']);
+const loadingStatus = ref('Προετοιμασία...');
+const isReady = ref(false);
 
-onMounted(() => {
+defineProps(['status', 'isReady']);
+
+onMounted(async() => {
   gsap.registerPlugin(MorphSVGPlugin);
 
   setTimeout(() => {
@@ -124,112 +130,18 @@ onMounted(() => {
     gsap.to("#LB", { morphSVG: "#L", duration: 1, yoyo: false });
     gsap.to("#PB", { morphSVG: "#P", duration: 1, yoyo: false });
   }, 3500);
+  try {
+      await tf.ready();
+      tf.env().set('WEBGL_PACK', false);
+      loadingStatus.value = 'Οι Ιεροφάντες ετοιμάζονται...';
+      const loadedModel = await tf.loadGraphModel('./model/rune_model_v102.json');
+      model.value = loadedModel; // Local reference if needed
+      emit('ready', loadedModel);
+      loadingStatus.value = 'Το Μαντείο είναι έτοιμο';
+      isReady.value = true;
+    } catch (e) {
+      loadingStatus.value = 'Οι οιωνοί δεν είναι ευνοϊκοί. Το Μαντείο είναι κλειστό.';
+      console.error(e);
+    }
 });
 </script>
-
-<style lang="scss" scoped>
-$gold: #d4af37;
-
-.splash-container {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #050505;
-  z-index: 1000;
-}
-
-.background-effects {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  .glow {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60vw; height: 60vw;
-    background: radial-gradient(circle, rgba($gold, 0.05) 0%, transparent 70%);
-  }
-}
-.btn-primary {
-  letter-spacing: 2px; /* Slightly reduced for Greek readability */
-}
-.content {
-  position: relative;
-  text-align: center;
-  z-index: 1;
-  width: 90%;
-  max-width: 1000px;
-
-  .svg-title-wrapper {
-    margin-bottom: 2rem;
-    margin-left: 2rem
-  }
-}
-
-#svg-stage {
-  width: 100%;
-  max-height: 40vh;
-  overflow: visible;
-}
-
-#gradient {
-  height: 0;
-}
-
-.divider {
-  width: 50px;
-  height: 1px;
-  background: $gold;
-  margin: 0 auto 2rem;
-  opacity: 0.5;
-}
-
-.loader-section {
-  margin-bottom: 3rem;
-  height: 60px;
-
-  .status-text {
-    letter-spacing: 1px;
-    font-size: 0.8rem;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-    &.ready { color: $gold; }
-  }
-
-  .progress-bar {
-    width: 200px; height: 2px;
-    background: #1a1a1a;
-    margin: 0 auto;
-    overflow: hidden;
-    .progress-fill {
-      width: 100%; height: 100%;
-      background: $gold;
-      animation: loading 2s infinite ease-in-out;
-    }
-  }
-}
-
-.version {
-  position: absolute;
-  bottom: 2rem;
-  font-size: 0.7rem;
-  color: #333;
-}
-
-@keyframes loading {
-  0% { transform: translateX(-100%); }
-  50% { transform: translateX(0); }
-  100% { transform: translateX(100%); }
-}
-
-.fade-leave-active { transition: opacity 0.8s ease; }
-.fade-leave-to { opacity: 0; }
-
-.slide-up-enter-active { transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-.slide-up-enter-from { opacity: 0; transform: translateY(20px); }
-</style>
