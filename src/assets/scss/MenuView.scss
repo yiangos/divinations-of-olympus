@@ -36,15 +36,20 @@
 }
 
 /* Inherits from standard primary button styles */
-.btn-primary {
-  width: 100%;
+.btn-primary, select.btn-primary {
+  background-color: rgba(0, 0, 0, 0.8); /* Solid dark base */
+  color: $gold;
   border: 1px solid rgba($gold, 0.5);
-  background: rgba(0, 0, 0, 0.7); /* Adds contrast against background */
-  &:hover {
-    background: rgba($gold, 0.1);
+  transition: all 0.2s ease;
+
+  &:focus, &:active, &:hover {
+    background-color: #000000;
+    color: $gold;
+    border-color: $gold;
+    outline: none;
+    box-shadow: 0 0 10px rgba($gold, 0.3);
   }
 }
-
 @keyframes blurIn {
   from { filter: blur(0px) brightness(1); }
   to { filter: blur(10px) brightness(0.4); }
@@ -75,4 +80,36 @@
   .back-btn {
     margin-top: 3rem;
   }
+}
+.menu-container {
+  padding: 0 5%; // Margin on sides
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  color: $gold;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba($gold, 0.5);
+  margin-bottom: 2rem;
+}
+
+.options-grid, .footer-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Center-align buttons
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 60vh;
+  padding: 1rem;
+  border: none; // Remove borders
+  background: transparent; 
+  text-align: justify;
 }

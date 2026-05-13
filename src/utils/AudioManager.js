@@ -15,39 +15,50 @@ export const tracks = [
 const bgMusic = new Audio();
 bgMusic.loop = true;
 
+const isRestrictedAudio = 'remote' in bgMusic;
+
 const fadeVolume = (callback) => {
+  if (isRestrictedAudio) {
+    bgMusic.pause();
+    callback(); // Immediate execution for iOS
+    return;
+  }
+
   const fadeOut = setInterval(() => {
     if (bgMusic.volume > 0.05) {
       bgMusic.volume -= 0.05;
     } else {
       clearInterval(fadeOut);
       bgMusic.pause();
-      bgMusic.volume = 1.0; // Reset for next play
-      if (callback) callback();
+      bgMusic.volume = 1.0;
+      callback();
     }
-  }, 25); // ~500ms total fade duration
+  }, 25);
 };
+
 export const playMusic = () => {
   if ((bgMusic.src === '' || bgMusic.paused) && !isMuted.value) {
     bgMusic.src = currentTrack.value;
     bgMusic.play().catch(() => {});
   }
 };
+
+export const changeTrack = (newPath) => {
+  const fullPath = `${import.meta.env.BASE_URL}${newPath.replace('./', '')}`;
+  currentTrack.value = newPath;
+  fadeVolume(() => {
+    bgMusic.src = fullPath;
+    bgMusic.load();
+    if (!isMuted.value) bgMusic.play().catch(() => {});
+  });
+};
+
 export const toggleMute = () => {
   isMuted.value = !isMuted.value;
   if (isMuted.value) {
-    fadeVolume(() => { bgMusic.muted = true; });
+    fadeVolume(() => {});
   } else {
-    bgMusic.muted = false;
     bgMusic.volume = 1.0;
     bgMusic.play().catch(() => {});
   }
-};
-
-export const changeTrack = (newPath) => {
-  fadeVolume(() => {
-    currentTrack.value = newPath;
-    bgMusic.src = newPath;
-    if (!isMuted.value) bgMusic.play();
-  });
 };

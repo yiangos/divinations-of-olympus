@@ -16,7 +16,9 @@ import { ref, shallowRef, computed } from 'vue';
 import SplashView from './views/SplashView.vue';
 import MenuView from './views/MenuView.vue';
 import OptionsView from './views/OptionsView.vue';
+import InfoView from './views/InfoView.vue';
 import { playMusic } from '@/utils/AudioManager';
+import { staticPages } from '@/utils/content';
 
 const viewState = ref('splash');
 const model = shallowRef(null);
@@ -25,18 +27,16 @@ const views = {
   splash: SplashView,
   menu: MenuView,
   options: OptionsView,
+  about: InfoView,
+  help: InfoView,
+  rules: InfoView,
 };
 
 const currentView = computed(() => views[viewState.value]);
 
 const viewProps = computed(() => {
-  if (viewState.value === 'about') {
-    return { 
-      title: 'Σχετικά', 
-      content: '<p>Το Μαντείο των Ολύμπιων είναι μια πύλη προς την αρχαία σοφία...</p>' 
-    };
-  }
-  return {};
+  const page = staticPages[viewState.value];
+  return page ? { title: page.title, content: page.html } : {};
 });
 
 const handleEnter = () => { playMusic(); viewState.value = 'menu'; };

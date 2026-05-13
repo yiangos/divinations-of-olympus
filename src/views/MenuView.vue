@@ -23,8 +23,8 @@
         { id: 'newGame', label: 'Νεα Συνεδρια' },
         { id: 'loadGame', label: 'Φορτωση Συνεδριας' },
         { id: 'options', label: 'Επιλογες' },
-        { id: 'gameRules', label: 'Κανονες Παιχνιδιου' },
-        { id: 'appHelp', label: 'Οδηγιες Χρησης' },
+        { id: 'rules', label: 'Κανονες Παιχνιδιου' },
+        { id: 'help', label: 'Οδηγιες Χρησης' },
         { id: 'about', label: 'Σχετικα' }
     ];
 </script>
