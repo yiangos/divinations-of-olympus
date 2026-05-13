@@ -1,20 +1,26 @@
-.static-layout {
-  display: flex;
-  flex-direction: column;
-  height: 85vh;
-  max-width: 800px;
+.sticky-header {
+  flex-shrink: 0;
 }
+
 .scroll-area {
   flex: 1;
   overflow-y: auto;
-  padding: 1rem;
+  padding: 1rem 5%;
   margin: 1rem 0;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  text-align: left;
-  line-height: 1.6;
+  text-align: justify;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
-.footer-actions {
+
+.sticky-footer {
   flex-shrink: 0;
-  padding-top: 1rem;
+  padding-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+.fixed-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh; /* Uses dynamic viewport height for mobile browsers */
+  padding: 2rem 0;
+  box-sizing: border-box;
 }
