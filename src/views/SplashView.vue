@@ -77,7 +77,7 @@
         </transition>
       </div>
 
-      <footer class="version">v1.0.2</footer>
+      <footer class="version">v1.0.0</footer>
     </div>
   </transition>
 </template>

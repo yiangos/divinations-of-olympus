@@ -1,11 +1,6 @@
-<script setup>
-defineProps(['title', 'content']);
-const emit = defineEmits(['back']);
-</script>
 
 <template>
   <div class="menu-container info-page">
-    <div class="background-overlay"></div>
     <div class="content-layer fixed-layout">
       <header class="sticky-header">
         <h1>{{ title }}</h1>
@@ -19,5 +14,10 @@ const emit = defineEmits(['back']);
     </div>
   </div>
 </template>
-<style lang="scss" src="@/assets/scss/MenuView.scss" scoped></style>
+
 <style lang="scss" src="@/assets/scss/InfoView.scss" scoped></style>
+
+<script setup>
+defineProps(['title', 'content']);
+const emit = defineEmits(['back']);
+</script>

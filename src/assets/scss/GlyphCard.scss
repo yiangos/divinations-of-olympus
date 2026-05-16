@@ -1,0 +1,62 @@
+.glyph-card {
+  display: flex;
+  box-sizing: border-box;
+  color: #fff;
+
+  .glyph-square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+
+  // Score Background Mappings
+  &.score-1 .glyph-square { background-color: #B87333; color: #fff; } // Copper
+  &.score-2 .glyph-square { background-color: #C0C0C0; color: #000; } // Silver
+  &.score-3 .glyph-square { background-color: #FFD700; color: #000; } // Gold
+  &.score-5 .glyph-square { background-color: #26619C; color: #fff; } // Lapis Lazuli
+  &.score-default .glyph-square { 
+    background-color: #111; 
+    border: 1px solid rgba($gold, 0.4); 
+    color: #fff;
+  }
+
+  // Layout Mode: ScanPopup
+  &.mode-scan {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+
+    .glyph-square {
+      width: 42px; // Matches standard primary button action height
+      height: 42px;
+    }
+    .glyph-symbol { font-size: 1.6rem; }
+    .glyph-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  }
+
+  // Layout Mode: Autocomplete
+  &.mode-autocomplete {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+
+    .glyph-square {
+      width: 32px;
+      height: 32px;
+    }
+    .glyph-symbol { font-size: 1.2rem; }
+    .glyph-label { font-size: 0.95rem; }
+  }
+
+  // Layout Mode: Glyph List
+  &.mode-list {
+    .glyph-square {
+      width: 40px;
+      height: 40px;
+    }
+    .glyph-symbol { font-size: 1.4rem; }
+  }
+}

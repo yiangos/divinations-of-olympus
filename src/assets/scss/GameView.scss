@@ -1,0 +1,96 @@
+@use "variables" as *;
+.game-container {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  padding: 1rem;
+}
+.content-layer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  padding-bottom: 5rem; // Space for sticky footer
+}
+
+.score-card {
+  @include gold-glow;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.accordion-section {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
+
+.accordion-header {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  color: $gold;
+  border: 1px solid rgba($gold, 0.5);
+  padding: 0.8rem;
+  text-align: left;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+
+  &:active {
+    color: #fff;
+  }
+}
+
+.accordion-content {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-left: 2px solid $gold;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  z-index:1001;
+}
+
+.toast-notification {
+  position: fixed;
+  top: 2rem; /* Changed from bottom: 2rem */
+  left: 50%;
+  transform: translateX(-50%);
+  background: $gold;
+  color: #000;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  z-index: 2000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.toast-fade-enter-active,
+.toast-fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.toast-fade-enter-from {
+  opacity: 0;
+  transform: translate(-50%, -1rem); /* Changed from 1rem */
+}
+
+.toast-fade-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -1rem); /* Changed from -1rem to match top exit directional flow */
+}

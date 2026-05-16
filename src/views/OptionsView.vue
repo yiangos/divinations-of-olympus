@@ -1,6 +1,5 @@
 <template>
   <div class="menu-container">
-    <div class="background-overlay"></div>
     <div class="content-layer">
       <h1>ΕΠΙΛΟΓΕΣ</h1>
       <div class="options-grid">
@@ -16,7 +15,7 @@
   </div>
 </template>
 
-<style lang="scss" src="@/assets/scss/MenuView.scss" scoped></style>
+<style lang="scss" src="@/assets/scss/OptionsView.scss" scoped></style>
 <script setup>
 import { isMuted, toggleMute, tracks, currentTrack, changeTrack } from '@/utils/AudioManager';
 const emit = defineEmits(['back']);

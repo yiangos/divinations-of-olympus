@@ -1,0 +1,115 @@
+@use "variables" as *;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $bg-black;
+  color: white;
+  font-family: $font-main;
+  overflow: hidden; // Prevent scrolling on splash
+}
+
+h1 {
+  color: $gold;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba($gold, 0.4);
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+}
+.menu-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 0 5%; // Margin on sides
+}
+
+.content-layer {
+  position: relative;
+  z-index: 1;
+}
+.btn-primary {
+  color: $gold;
+  border: 2px solid $gold;
+  padding: 1rem 2rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  border-radius:0.5rem;
+  background-color: rgba(0, 0, 0, 0.8); /* Solid dark base */
+  transition: all 0.2s ease;
+
+  &:focus, &:active {
+    outline: none;
+    color: #fff;
+    border-color: #fff;
+  }
+}
+select.btn-primary {
+  -webkit-appearance: none; /* Removes iOS native styling */
+  -moz-appearance: none;
+  appearance: none;
+  border-radius:0.5rem;
+  width: 100%;
+  padding: 0.8rem;
+  text-align: center;
+  text-align-last: center; /* Centers text on mobile */
+  cursor: pointer;
+  
+  /* Optional: Add a custom gold arrow if needed */
+  background-image: linear-gradient(45deg, transparent 50%, $gold 50%),
+                    linear-gradient(135deg, $gold 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+                       calc(100% - 15px) calc(1em + 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.shared-background {
+  position: fixed;
+  inset: 0;
+  background: url('@/assets/images/bg-main.jpg') center/cover no-repeat;
+  z-index: -1;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.8s ease 0.5s; // Delay blur fade-in
+  }
+
+  &.is-loaded::after {
+    opacity: 1;
+  }
+}
+.page-fade-enter-active, 
+.page-fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.page-fade-enter-from, 
+.page-fade-leave-to {
+  opacity: 0;
+}
+
+.app-wrapper {
+  min-height: 100dvh;
+  position: relative;
+  overflow: hidden;
+}

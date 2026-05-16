@@ -1,7 +1,5 @@
 <template>
   <div class="menu-container">
-    <div class="background-overlay"></div>
-    
     <div class="content-layer">
       <div class="menu-list">
         <button 

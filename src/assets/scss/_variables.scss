@@ -1,6 +1,14 @@
-$gold: #d4af37;
 $gold-light: #f1d592;
 $bg-black: #000000;
 $text-dim: #a0a0a0;
 $font-main: 'Segoe UI', Roboto, sans-serif;
 $btn-bg: rgba(0, 0, 0, 0.7);
+
+$gold: #d4af37;
+$black: #0a0a0a;
+
+@mixin gold-glow {
+  color: $gold;
+  text-shadow: 0 0 10px rgba($gold, 0.4);
+  text-transform: uppercase;
+}
