@@ -15,11 +15,61 @@
 }
 
 .score-card {
-  @include gold-glow;
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-}
+  background: #111;
+  border: 2px solid $gold;
+  border-radius: 8px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto 1.5rem auto;
+  box-sizing: border-box;
 
+  .final-score-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .score-label {
+      font-size: 0.75rem;
+      color: rgba(#fff, 0.6);
+      letter-spacing: 1.5px;
+      font-weight: bold;
+    }
+
+    .score-value.final {
+      font-size: 3rem;
+      font-weight: 900;
+      color: $gold;
+      line-height: 1.1;
+      text-shadow: 0 0 12px rgba($gold, 0.4);
+    }
+  }
+
+  .base-score-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-top: 1px dashed rgba(#fff, 0.2);
+    padding-top: 0.75rem;
+
+    .score-label {
+      font-size: 0.85rem;
+      color: rgba(#fff, 0.5);
+    }
+
+    .score-value.base {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #fff;
+    }
+  }
+}
 .accordion-section {
   width: 100%;
   max-width: 400px;
@@ -93,4 +143,13 @@
 .toast-fade-leave-to {
   opacity: 0;
   transform: translate(-50%, -1rem); /* Changed from -1rem to match top exit directional flow */
+}
+.glyphs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  justify-content: flex-start;
+  padding: 0.5rem 0.125rem;
+  width: 100%;
+  box-sizing: border-box;
 }

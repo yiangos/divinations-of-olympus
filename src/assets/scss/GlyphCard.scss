@@ -12,10 +12,10 @@
   }
 
   // Score Background Mappings
-  &.score-1 .glyph-square { background-color: #B87333; color: #fff; } // Copper
+  &.score-1 .glyph-square { background-color: #B87333; color: #000; } // Copper
   &.score-2 .glyph-square { background-color: #C0C0C0; color: #000; } // Silver
   &.score-3 .glyph-square { background-color: #FFD700; color: #000; } // Gold
-  &.score-5 .glyph-square { background-color: #26619C; color: #fff; } // Lapis Lazuli
+  &.score-5 .glyph-square { background-color: #26619C; color: #000; } // Lapis Lazuli
   &.score-default .glyph-square { 
     background-color: #111; 
     border: 1px solid rgba($gold, 0.4); 
@@ -54,9 +54,11 @@
   // Layout Mode: Glyph List
   &.mode-list {
     .glyph-square {
-      width: 40px;
-      height: 40px;
+      width: 25px;
+      height: 25px;
     }
-    .glyph-symbol { font-size: 1.4rem; }
+    .glyph-symbol {
+      font-size: 1rem;
+    }
   }
 }

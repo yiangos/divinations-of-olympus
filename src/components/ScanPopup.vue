@@ -29,7 +29,7 @@
 
       <canvas id="c" ref="canvasRef" width="224" height="224" style="display: none;"></canvas>
       
-      <button class="btn-secondary back-btn" @click="emit('close')">ΠΙΣΩ</button>
+      <button class="btn-secondary back-btn" @click="emit('close')">ΕΠΙΣΤΡΟΦΗ</button>
     </div>
   </div>
 </template>
