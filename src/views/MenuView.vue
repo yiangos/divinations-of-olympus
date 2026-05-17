@@ -6,7 +6,7 @@
           v-for="btn in menuButtons" 
           :key="btn.id" 
           class="btn-primary"
-          @click="emit('action', btn.id)"
+          @click="handleMenuClick(btn.id)"
         >
           {{ btn.label }}
         </button>
@@ -25,4 +25,22 @@
         { id: 'help', label: 'Οδηγιες Χρησης' },
         { id: 'about', label: 'Σχετικα' }
     ];
+    const handleMenuClick = (id) => {
+      if (id === 'loadGame') {
+        const data = localStorage.getItem('oracle_session_data');
+        const hasData = data && JSON.parse(data).length > 0;
+        
+        emit('action', 'game', {
+          showToast: true,
+          message: hasData 
+            ? 'Η συνεδρία φορτώθηκε επιτυχώς' 
+            : 'Δεν βρέθηκαν δεδομένα συνεδρίας. Ξεκίνησε νέα συνεδρία'
+        });
+      } else if (id === 'newGame') {
+        localStorage.removeItem('oracle_session_data');
+        emit('action', 'game');
+      } else {
+        emit('action', id);
+      }
+    };
 </script>

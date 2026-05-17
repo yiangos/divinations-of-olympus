@@ -1,7 +1,5 @@
 import { ref } from 'vue';
 
-export const isMuted = ref(false);
-export const currentTrack = ref('./audio/soliloquy.mp3');
 export const tracks = [
   { name: 'Ambient Mysticism', path: './audio/soliloquy.mp3' },
   { name: 'At the Slopes of Mt Parnassus', path: './audio/snowland.mp3' },
@@ -16,6 +14,11 @@ const bgMusic = new Audio();
 bgMusic.loop = true;
 
 const isRestrictedAudio = 'remote' in bgMusic;
+const savedMute = localStorage.getItem('oracle_is_muted');
+const savedTrack = localStorage.getItem('oracle_current_track');
+
+export const isMuted = ref(savedMute ? JSON.parse(savedMute) : false);
+export const currentTrack = ref(savedTrack || './audio/soliloquy.mp3');
 
 const fadeVolume = (callback) => {
   if (isRestrictedAudio) {
@@ -46,6 +49,8 @@ export const playMusic = () => {
 export const changeTrack = (newPath) => {
   const fullPath = `${import.meta.env.BASE_URL}${newPath.replace('./', '')}`;
   currentTrack.value = newPath;
+  localStorage.setItem('oracle_current_track', newPath);
+  
   fadeVolume(() => {
     bgMusic.src = fullPath;
     bgMusic.load();
@@ -55,6 +60,8 @@ export const changeTrack = (newPath) => {
 
 export const toggleMute = () => {
   isMuted.value = !isMuted.value;
+  localStorage.setItem('oracle_is_muted', JSON.stringify(isMuted.value));
+  
   if (isMuted.value) {
     fadeVolume(() => {});
   } else {
