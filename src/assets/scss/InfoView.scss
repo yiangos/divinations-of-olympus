@@ -9,6 +9,17 @@
   margin: 1rem 0;
   text-align: justify;
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  :deep(h2) {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      display: block;
+      color: #c2c2c2;
+  }
+
+  :deep(article) {
+    margin: 2rem 0;
+    color: #c2c2c2;
+  }
 }
 
 .sticky-footer {
