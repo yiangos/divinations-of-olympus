@@ -63,7 +63,7 @@
         
         <div class="loader-section">
           <p class="status-text" :class="{ 'ready': isReady }">
-            {{ status }}
+            {{ loadingStatus }}
           </p>
           <div v-if="!isReady" class="progress-bar">
             <div class="progress-fill"></div>
@@ -77,7 +77,7 @@
         </transition>
       </div>
 
-      <footer class="version">v1.0.0</footer>
+      <footer class="version">v1.0.1</footer>
     </div>
   </transition>
 </template>
@@ -91,7 +91,7 @@ import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
 
 const model = shallowRef(null);
 const emit = defineEmits(['ready', 'enter']);
-const loadingStatus = ref('Προετοιμασία...');
+const loadingStatus = ref('Προετοιμασια...');
 const isReady = ref(false);
 
 defineProps(['status', 'isReady']);
@@ -133,14 +133,14 @@ onMounted(async() => {
   try {
       await tf.ready();
       tf.env().set('WEBGL_PACK', false);
-      loadingStatus.value = 'Οι Ιεροφάντες ετοιμάζονται...';
+      loadingStatus.value = 'Οι Ιεροφαντες ετοιμαζονται...';
       const loadedModel = await tf.loadGraphModel('./model/rune_model_v102.json');
       model.value = loadedModel; // Local reference if needed
       emit('ready', loadedModel);
-      loadingStatus.value = 'Το Μαντείο είναι έτοιμο';
+      loadingStatus.value = 'Το Μαντειο ειναι ετοιμο';
       isReady.value = true;
     } catch (e) {
-      loadingStatus.value = 'Οι οιωνοί δεν είναι ευνοϊκοί. Το Μαντείο είναι κλειστό.';
+      loadingStatus.value = 'Οι οιωνοι δεν είναι ευνοϊκοι. Το Μαντειο ειναι κλειστο.';
       console.error(e);
     }
 });
