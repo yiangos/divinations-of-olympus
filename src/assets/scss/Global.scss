@@ -51,6 +51,7 @@ h1 {
   border-radius:0.5rem;
   background-color: rgba(0, 0, 0, 0.8); /* Solid dark base */
   transition: all 0.2s ease;
+  min-height:3.75rem;
 
   &:focus, &:active {
     outline: none;

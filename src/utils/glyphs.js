@@ -81,7 +81,7 @@ export const glyphs = [
     {"name":"SPICE", "score":5, "sign":0x10091},
     {"name":"SU", "score":1, "sign":0x10031},
     {"name":"TA", "score":2, "sign":0x10032},
-    {"name":"TA₂", "score":1, "sign":0x1004B},
+    {"name":"TA₂", "score":3, "sign":0x1004B},
     {"name":"TE", "score":3, "sign":0x10033},
     {"name":"TI", "score":1, "sign":0x10034},
     {"name":"TO", "score":2, "sign":0x10035},

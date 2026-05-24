@@ -4,7 +4,7 @@ export const staticPages = {
     <article>
     <p> Ενας απλός ψηφιακός βοηθός υπολογισμού βαθμολογίας για το επιτραπέζιο παιχνίδι "Χρησμοί του Ολύμπου"</p>
     <p>&nbsp;</p>
-    <ul><li>Σχεδίαση/υλοποίηση:<br><strong>Γιάννης Βαβουρανάκης</strong></li>
+    <ul><li>Σχεδίαση/υλοποίηση:<br><strong>Γιάννης Βαβουρανάκης (<a href="mailto:ivavouranakis@gmail.com">ivavouranakis@gmail.com</a>)</strong></li>
     <li>Μουσική επένδυση:<br><strong>Matthew Pablo</strong></li>
     </ul>
     <p>&nbsp;</p>
