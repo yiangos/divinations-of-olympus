@@ -4,9 +4,10 @@ export const staticPages = {
     <article>
     <p> Ενας απλός ψηφιακός βοηθός υπολογισμού βαθμολογίας για το επιτραπέζιο παιχνίδι "Χρησμοί του Ολύμπου"</p>
     <p>&nbsp;</p>
-    <ul><li>Σχεδίαση/υλοποίηση:<br><strong>Γιάννης Βαβουρανάκης (<a href="mailto:ivavouranakis@gmail.com">ivavouranakis@gmail.com</a>)</strong></li>
-    <li>Μουσική επένδυση:<br><strong>Matthew Pablo</strong></li>
-    </ul>
+    <p>Σχεδίαση/υλοποίηση:<br><strong>Γιάννης Βαβουρανάκης</strong><br>(<a href="mailto:ivavouranakis@gmail.com">ivavouranakis@gmail.com</a>)</p>
+    <p>&nbsp;</p>
+    <p>Μουσική επένδυση:<br><strong>Matthew Pablo</strong></p>
+    <p>&nbsp;</p>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     </article>

@@ -20,6 +20,9 @@
     margin: 2rem 0;
     color: #c2c2c2;
   }
+  :deep(a){
+    color: #c2c2c2;
+  }
 }
 
 .sticky-footer {
